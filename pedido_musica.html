@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="pt-br" data-bs-theme="dark"> <head>
+<html lang="pt-br" data-bs-theme="dark">
+<head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -18,22 +19,15 @@
     <link rel="stylesheet" href="/static/vite_dist/assets/Layout-BnjlKdFv.css" />
     <link rel="apple-touch-icon" sizes="180x180" href="/static/icons/production/180.png">
     <link rel="icon" type="image/png" sizes="192x192" href="/static/icons/production/192.png">
-    <meta name="theme-color" content="#000000"> <link rel="manifest" href="/public/gay_fm_br/app.webmanifest">
-
-    <meta name="mobile-web-app-capable" content="yes">
-    <meta name="mobile-web-app-status-bar-style" content="black">
-    <meta name="mobile-web-app-title" content="GAY FM BR">
-
-    <meta property="og:title" content="GAY FM BR">
-    <meta property="og:url" content="https://www.gayfm.com.br">
-    <meta property="og:image" content="https://gayfmbr.mooo.com/api/nowplaying/gay_fm_br/art/1773773229.jpg">
+    <meta name="theme-color" content="#000000">
+    <link rel="manifest" href="/public/gay_fm_br/app.webmanifest">
 
     <link rel="stylesheet" href="/static/vite_dist/assets/SongHistory-Do-ksD99.css" />
     <link rel="stylesheet" href="/static/vite_dist/assets/AlbumArt-CgFUTlVD.css" />
     <link rel="stylesheet" href="/static/vite_dist/assets/Player-vOkdkvhB.css" />
 
     <style>
-        /* Força fundo PRETO e texto BRANCO */
+        /* FUNDO TOTAL BLACK */
         body.page-minimal,
         body.page-station-public-player,
         #page-wrapper,
@@ -42,47 +36,50 @@
             color: #ffffff !important;
         }
 
-        /* Ajuste para o rodapé e links */
-        #footer, #footer a {
-            color: #444 !important;
-            text-decoration: none;
-        }
-
-        /* Ajuste fino para componentes internos do AzuraCast no modo dark */
-        .public-page-main {
-            background-color: transparent !important;
+        /* CARD DO PLAYER COM EFEITO NEON */
+        #public-radio-player {
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid #222;
+            box-shadow: 0 0 20px rgba(228, 3, 3, 0.1); /* Brilho vermelho sutil */
         }
 
         .card {
             background-color: #0a0a0a !important;
-            border-color: #222 !important;
-            color: white !important;
+            border: none !important;
         }
 
-        /* Se o player usar botões ou tabelas de histórico */
-        .table, .text-muted {
-            color: #aaa !important;
+        /* RODAPÉ DISCRETO */
+        #footer {
+            margin-top: 2rem;
+            padding: 20px;
+            font-size: 0.8rem;
+            opacity: 0.5;
         }
+        #footer a {
+            color: #ffffff !important;
+            font-weight: bold;
+        }
+
+        /* AJUSTE PARA OS BOTÕES DO AZURACAST */
+        .btn-primary {
+            background-color: #E40303 !important;
+            border-color: #E40303 !important;
+        }
+        
+        /* SCROLLBAR DARK */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #000; }
+        ::-webkit-scrollbar-thumb { background: #333; border-radius: 10px; }
     </style>
 </head>
 
 <body class="page-minimal page-station-public-player station-gay_fm_br">
 
-<script>
-    ready(() => {
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', function () {
-                navigator.serviceWorker.register('/public/sw.js');
-            });
-        }
-    });
-</script>
-
 <script type="module" src="/static/vite_dist/assets/PublicFullPlayer-BncMlvBI.js"></script>
 <script type="text/javascript">
-    let Vue_PublicFullPlayer;
     ready(() => {
-        Vue_PublicFullPlayer = window.vueComponent('#public-radio-player', {
+        window.vueComponent('#public-radio-player', {
             "locale":"pt_BR",
             "localeShort":"pt",
             "localeWithDashes":"pt-BR",
@@ -97,14 +94,14 @@
                 },
                 "player":{
                     "nowPlayingProps":{"stationShortName":"gay-fm-br"},
-                    "offlineText":null,
+                    "offlineText":"Rádio Offline",
                     "showAlbumArt":true,
                     "autoplay":false,
                     "showHls":false,
                     "widgetCustomization":{
-                        "primaryColor":"#E40303", /* Adicionei vermelho como cor primária */
-                        "backgroundColor":"#000000", /* Forçando fundo preto no JS */
-                        "textColor":"#ffffff", /* Forçando texto branco no JS */
+                        "primaryColor":"#E40303", 
+                        "backgroundColor":"#000000", 
+                        "textColor":"#ffffff", 
                         "showAlbumArt":true,
                         "roundedCorners":true,
                         "autoplay":false,
@@ -117,8 +114,7 @@
                         "initialVolume":75,
                         "layout":"horizontal",
                         "enablePopupPlayer":false,
-                        "continuousPlay":false,
-                        "customCss":null
+                        "continuousPlay":false
                     }
                 }
             }
@@ -127,12 +123,13 @@
 </script>
 
 <div id="page-wrapper">
-    <main id="main">
-        <div id="public-radio-player" class="vue-component">Carregando Player...</div>
+    <main id="main" class="container py-5">
+        <div id="public-radio-player" class="vue-component">Carregando a vibe...</div>
     </main>
 
-    <footer id="footer" class="footer-alt" role="contentinfo" aria-label="Footer">
-        Powered by <a href="https://azuracast.com/" target="_blank">AzuraCast</a>
+    <footer id="footer" class="text-center">
+        Powered by <a href="https://azuracast.com/" target="_blank">AzuraCast</a> | 
+        <strong>Gay FM Brasil 2026</strong>
     </footer>
 </div>
 
