@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Músicas | Gay FM Brasil</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: white; color: black; }
+        
+        .rainbow-line {
+            background: linear-gradient(90deg, #E40303, #FF8C00, #FFED00, #008026, #24408E, #732982);
+            height: 8px;
+        }
+
+        .rainbow-text {
+            background: linear-gradient(90deg, #E40303, #FF8C00, #FFED00, #008026, #24408E, #732982);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 900;
+        }
+
+        .btn-voltar {
+            background-color: #f3f4f6;
+            transition: all 0.3s;
+        }
+        .btn-voltar:hover { background-color: #e5e7eb; transform: scale(1.05); }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+
+    <div class="rainbow-line"></div>
+
+    <nav class="p-6 flex justify-between items-center max-w-5xl mx-auto w-full">
+        <a href="home.html">
+            <img src="logotipo.png" alt="Gay FM Logo" class="h-12 w-auto object-contain">
+        </a>
+    </nav>
+
+    <main class="flex-grow flex flex-col items-center justify-center px-6 text-center py-12">
+        
+        <div class="mb-10">
+            <h1 class="text-6xl font-black mb-4 rainbow-text italic italic tracking-tighter">
+                PLAYLISTS
+            </h1>
+            <p class="text-gray-500 text-lg max-w-md mx-auto">
+                Confira os hits que estão bombando na programação da rádio mais alegre do Brasil.
+            </p>
+        </div>
+
+        <div class="w-full max-w-4xl grid md:grid-cols-2 gap-6 mb-12">
+            <div class="bg-white p-6 rounded-2xl shadow-lg border border-gray-100">
+                <h3 class="font-bold text-xl text-pink-500">🔥 Top Hits</h3>
+                <p class="text-gray-500 text-sm mt-2">As músicas mais pedidas da semana.</p>
+            </div>
+            <div class="bg-white p-6 rounded-2xl shadow-lg border border-gray-100">
+                <h3 class="font-bold text-xl text-purple-500">🏳️‍🌈 Clássicos Pride</h3>
+                <p class="text-gray-500 text-sm mt-2">Hinos que marcaram a história da comunidade.</p>
+            </div>
+        </div>
+
+        <button onclick="location.href='home.html'" 
+                class="btn-voltar text-gray-600 px-10 py-3 rounded-full font-bold uppercase text-sm tracking-widest shadow-sm">
+            ← Voltar para a Rádio
+        </button>
+
+    </main>
+
+    <footer class="p-10 text-center text-gray-400 text-[10px] uppercase tracking-widest mb-28">
+        Gay FM Brasil &bull; 2026
+    </footer>
+
+</body>
+</html>
