@@ -1,137 +1,81 @@
 <!DOCTYPE html>
-<html lang="pt-br" data-bs-theme="dark">
+<html lang="pt-br">
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <title>GAY FM BR - AzuraCast</title>
-
-    <script type="module" src="/static/vite_dist/assets/Layout-DfqzoYy9.js"></script>
-    <script>
-    function ready(callback) {
-        if (document.readyState !== "loading") callback();
-        else document.addEventListener("DOMContentLoaded", callback);
-    }
-    </script>
-
-    <link rel="modulepreload" href="/static/vite_dist/bootstrap.esm-CX5R4MoQ.js" />
-    <link rel="stylesheet" href="/static/vite_dist/assets/Layout-BnjlKdFv.css" />
-    <link rel="apple-touch-icon" sizes="180x180" href="/static/icons/production/180.png">
-    <link rel="icon" type="image/png" sizes="192x192" href="/static/icons/production/192.png">
-    <meta name="theme-color" content="#000000">
-    <link rel="manifest" href="/public/gay_fm_br/app.webmanifest">
-
-    <link rel="stylesheet" href="/static/vite_dist/assets/SongHistory-Do-ksD99.css" />
-    <link rel="stylesheet" href="/static/vite_dist/assets/AlbumArt-CgFUTlVD.css" />
-    <link rel="stylesheet" href="/static/vite_dist/assets/Player-vOkdkvhB.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pedir Música | Gay FM Brasil</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
 
     <style>
-        /* FUNDO TOTAL BLACK */
-        body.page-minimal,
-        body.page-station-public-player,
-        #page-wrapper,
-        #main {
-            background-color: #000000 !important;
-            color: #ffffff !important;
-        }
-
-        /* CARD DO PLAYER COM EFEITO NEON */
-        #public-radio-player {
-            border-radius: 20px;
-            overflow: hidden;
-            border: 1px solid #222;
-            box-shadow: 0 0 20px rgba(228, 3, 3, 0.1); /* Brilho vermelho sutil */
-        }
-
-        .card {
-            background-color: #0a0a0a !important;
-            border: none !important;
-        }
-
-        /* RODAPÉ DISCRETO */
-        #footer {
-            margin-top: 2rem;
-            padding: 20px;
-            font-size: 0.8rem;
-            opacity: 0.5;
-        }
-        #footer a {
-            color: #ffffff !important;
-            font-weight: bold;
-        }
-
-        /* AJUSTE PARA OS BOTÕES DO AZURACAST */
-        .btn-primary {
-            background-color: #E40303 !important;
-            border-color: #E40303 !important;
-        }
+        body { font-family: 'Inter', sans-serif; background-color: #000000; color: white; }
         
-        /* SCROLLBAR DARK */
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: #000; }
-        ::-webkit-scrollbar-thumb { background: #333; border-radius: 10px; }
+        .rainbow-text {
+            background: linear-gradient(90deg, #ff0000, #ff7f00, #ffff00, #00ff00, #00bfff, #0000ff, #8b00ff);
+            background-size: 300% auto;
+            animation: rainbowMove 6s linear infinite;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 900;
+        }
+
+        @keyframes rainbowMove { 0% { background-position: 0% center; } 100% { background-position: 300% center; } }
+
+        input, textarea {
+            background-color: #0a0a0a !important;
+            border: 1px solid #333 !important;
+            color: white !important;
+        }
+
+        input:focus, textarea:focus {
+            border-color: #ff0000 !important;
+            outline: none;
+            box-shadow: 0 0 10px rgba(255, 0, 0, 0.2);
+        }
     </style>
 </head>
+<body class="flex items-center justify-center min-h-screen p-6">
 
-<body class="page-minimal page-station-public-player station-gay_fm_br">
+    <div class="w-full max-w-md bg-[#0a0a0a] p-8 rounded-3xl shadow-2xl border border-gray-900">
+        <div class="text-center mb-8">
+            <h1 class="text-4xl rainbow-text italic mb-2">FAÇA SEU PEDIDO</h1>
+            <p class="text-gray-500 text-sm">Queremos ouvir o seu gosto musical!</p>
+        </div>
 
-<script type="module" src="/static/vite_dist/assets/PublicFullPlayer-BncMlvBI.js"></script>
-<script type="text/javascript">
-    ready(() => {
-        window.vueComponent('#public-radio-player', {
-            "locale":"pt_BR",
-            "localeShort":"pt",
-            "localeWithDashes":"pt-BR",
-            "componentProps":{
-                "stationName":"GAY FM BR",
-                "enableRequests":true,
-                "downloadPlaylistUri":"/public/gay-fm-br/playlist.pls",
-                "requests":{
-                    "requestListUri":"/api/station/1/requests",
-                    "showAlbumArt":true,
-                    "customFields":[]
-                },
-                "player":{
-                    "nowPlayingProps":{"stationShortName":"gay-fm-br"},
-                    "offlineText":"Rádio Offline",
-                    "showAlbumArt":true,
-                    "autoplay":false,
-                    "showHls":false,
-                    "widgetCustomization":{
-                        "primaryColor":"#E40303", 
-                        "backgroundColor":"#000000", 
-                        "textColor":"#ffffff", 
-                        "showAlbumArt":true,
-                        "roundedCorners":true,
-                        "autoplay":false,
-                        "showVolumeControls":true,
-                        "showTrackProgress":true,
-                        "showStreamSelection":true,
-                        "showHistoryButton":true,
-                        "showRequestButton":true,
-                        "showPlaylistButton":true,
-                        "initialVolume":75,
-                        "layout":"horizontal",
-                        "enablePopupPlayer":false,
-                        "continuousPlay":false
-                    }
-                }
-            }
-        });
-    });
-</script>
+        <form action="https://formspree.io/f/gayfmbr@gmail.com" method="POST" class="space-y-5">
+            
+            <div>
+                <label class="block text-xs uppercase tracking-widest text-gray-400 font-bold mb-2">Seu Nome</label>
+                <input type="text" name="nome" placeholder="Como quer ser chamado?" required 
+                    class="w-full px-4 py-3 rounded-xl transition-all">
+            </div>
 
-<div id="page-wrapper">
-    <main id="main" class="container py-5">
-        <div id="public-radio-player" class="vue-component">Carregando a vibe...</div>
-    </main>
+            <div>
+                <label class="block text-xs uppercase tracking-widest text-gray-400 font-bold mb-2">Seu E-mail</label>
+                <input type="email" name="email" placeholder="Para a gente te avisar" required 
+                    class="w-full px-4 py-3 rounded-xl transition-all">
+            </div>
 
-    <footer id="footer" class="text-center">
-        Powered by <a href="https://azuracast.com/" target="_blank">AzuraCast</a> | 
-        <strong>Gay FM Brasil 2026</strong>
-    </footer>
-</div>
+            <div>
+                <label class="block text-xs uppercase tracking-widest text-gray-400 font-bold mb-2">Música e Artista</label>
+                <textarea name="pedido" rows="3" placeholder="Ex: Pabllo Vittar - Alibi" required 
+                    class="w-full px-4 py-3 rounded-xl transition-all"></textarea>
+            </div>
+
+            <input type="hidden" name="_subject" value="Novo Pedido de Música: Gay FM Brasil">
+
+            <button type="submit" 
+                class="w-full py-4 rounded-xl bg-white text-black font-black uppercase tracking-tighter hover:scale-105 transition-transform shadow-lg">
+                Enviar para o DJ 🚀
+            </button>
+        </form>
+
+        <footer class="mt-8 text-center">
+            <p class="text-[10px] text-gray-600 uppercase tracking-widest">
+                Gay FM Brasil &bull; Ao vivo 2026
+            </p>
+        </footer>
+    </div>
 
 </body>
 </html>
