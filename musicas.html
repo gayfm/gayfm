@@ -1,22 +1,45 @@
+<style>
+    /* Mantendo o padrão de linha que corta a tela (Full Width) */
+    .full-rainbow-line {
+        background: linear-gradient(90deg, #E40303, #FF8C00, #FFED00, #008026, #24408E, #732982);
+        height: 4px;
+        width: 100vw;
+        position: relative;
+        left: 50%;
+        right: 50%;
+        margin-left: -50vw;
+        margin-right: -50vw;
+    }
+</style>
+
 <div class="animate__animated animate__fadeIn">
-    <div class="flex justify-end mb-4">
+    
+    <div class="full-rainbow-line mb-6"></div>
+
+    <div class="flex justify-end mb-8">
         <span onclick="carregarPagina('home.html')" class="text-[10px] tracking-widest font-black text-gray-500 hover:text-white uppercase cursor-pointer transition-all">
             ← VOLTAR
         </span>
     </div>
 
-    <header class="text-center mb-8">
-        <h1 class="text-5xl rainbow-text italic tracking-tighter mb-2">HISTÓRICO</h1>
+    <header class="text-center mb-10">
+        <h1 class="text-5xl rainbow-text italic tracking-tighter mb-2 font-black">HISTÓRICO</h1>
         <p class="text-gray-500 uppercase text-[10px] tracking-[0.3em]">Últimas músicas tocadas</p>
     </header>
 
-    <div class="bg-[#0a0a0a] border border-zinc-900 p-6 rounded-3xl mb-8 border-l-4 border-l-red-600">
-        <p class="text-red-500 text-[10px] font-black tracking-widest mb-3 uppercase">Tocando Agora</p>
-        <div id="now-playing-page" class="flex items-center gap-4 text-left">
-            <img id="current-art-page" src="favicon.png" class="w-16 h-16 rounded-xl shadow-lg border border-zinc-800">
+    <div class="bg-[#0a0a0a] border border-zinc-900 p-6 rounded-3xl mb-8 border-l-4 border-l-red-600 shadow-xl">
+        <p class="text-red-500 text-[10px] font-black tracking-widest mb-3 uppercase flex items-center gap-2">
+            <span class="relative flex h-2 w-2">
+              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+              <span class="relative inline-flex rounded-full h-2 w-2 bg-red-500"></span>
+            </span>
+            Tocando Agora
+        </p>
+        <div class="flex items-center gap-4 text-left">
+            <img id="current-art-page" src="favicon.png" class="w-16 h-16 rounded-xl shadow-lg border border-zinc-800 object-cover">
             <div class="overflow-hidden">
-                <h2 id="current-title-page" class="text-xl font-bold leading-tight truncate text-white uppercase">Sintonizando...</h2>
-                <p id="current-artist-page" class="text-gray-400 text-sm truncate">Gay FM Brasil</p>
+                <h2 id="current-title-page" class="text-xl font-bold leading-tight truncate text-white uppercase tracking-tighter">Sintonizando...</h2>
+                <p id="current-artist-page" class="text-gray-400 text-sm truncate uppercase">Gay FM Brasil</p>
             </div>
         </div>
     </div>
@@ -34,40 +57,29 @@
 </div>
 
 <script>
-    (function() {
-        const apiLink = "https://gayfmbr.mooo.com/api/nowplaying/gay_fm_br";
-
-        function updateNowPlaying() {
-            fetch(apiLink)
-                .then(res => res.json())
-                .then(data => {
-                    const song = data.now_playing.song;
-                    
-                    // Atualiza Título
-                    const titleEl = document.getElementById('current-title-page');
-                    if(titleEl) titleEl.innerText = song.title;
-
-                    // Atualiza Artista
-                    const artistEl = document.getElementById('current-artist-page');
-                    if(artistEl) artistEl.innerText = song.artist;
-
-                    // Atualiza Capa
-                    const artEl = document.getElementById('current-art-page');
-                    if(artEl) artEl.src = song.art;
-                    
-                    console.log("Atualizado: " + song.title);
-                })
-                .catch(err => {
-                    console.error("Erro ao buscar rádio:", err);
-                    document.getElementById('current-title-page').innerText = "Gay FM Brasil";
-                });
-        }
-
-        // Inicia imediatamente
-        updateNowPlaying();
+    // Sincronização inteligente com o player global (index.html)
+    function sincronizarComPlayer() {
+        const tituloPrincipal = document.getElementById('song-title');
+        const artistaPrincipal = document.getElementById('song-artist');
+        const artPrincipal = document.getElementById('song-art');
         
-        // Atualiza a cada 10 segundos (mais rápido que o anterior)
-        if (window.radioTimer) clearInterval(window.radioTimer);
-        window.radioTimer = setInterval(updateNowPlaying, 10000);
-    })();
+        const tituloPagina = document.getElementById('current-title-page');
+        const artistaPagina = document.getElementById('current-artist-page');
+        const artPagina = document.getElementById('current-art-page');
+
+        if (tituloPrincipal && tituloPagina) {
+            tituloPagina.innerText = tituloPrincipal.innerText;
+            artistaPagina.innerText = artistaPrincipal.innerText;
+            
+            if(artPagina && artPrincipal) {
+                artPagina.src = artPrincipal.src;
+            }
+        }
+    }
+
+    sincronizarComPlayer();
+    
+    // Gestão de memória para o timer
+    if(window.timerSinc) clearInterval(window.timerSinc);
+    window.timerSinc = setInterval(sincronizarComPlayer, 2000);
 </script>
