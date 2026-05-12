@@ -1,5 +1,5 @@
 <style>
-    /* Linha arco-íris Full Width */
+    /* Mantendo a identidade visual do seu site */
     .full-rainbow-line {
         background: linear-gradient(90deg, #E40303, #FF8C00, #FFED00, #008026, #24408E, #732982);
         height: 4px;
@@ -11,156 +11,73 @@
         margin-right: -50vw;
     }
 
-    /* Estilização do Botão da Loja */
-    .shop-button {
-        background: linear-gradient(45deg, #1a1a1a, #0a0a0a);
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        border: 1px solid #18181b;
+    .shop-card {
+        background: #0a0a0a;
+        border: 1px solid #1a1a1a;
+        transition: all 0.3s ease;
     }
-    .shop-button:hover {
+    .shop-card:hover {
         border-color: #E40303;
-        transform: translateY(-3px);
-        box-shadow: 0 10px 25px -5px rgba(228, 3, 3, 0.4);
+        transform: scale(1.02);
     }
 
-    /* Estilo da Lista de Músicas (Tipo MyTuner) */
-    .history-item {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-        padding: 12px;
-        border-bottom: 1px solid #111;
-        transition: background 0.2s;
-    }
-    .history-item:hover { background: #0d0d0d; }
-    .history-art {
-        width: 45px;
-        height: 45px;
-        border-radius: 8px;
-        object-cover: cover;
-        border: 1px solid #222;
-    }
-    
-    .rainbow-text-small {
-        background: linear-gradient(90deg, #E40303, #FF8C00, #008026, #24408E);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        font-weight: bold;
+    /* Container para o histórico estilo MyTuner */
+    .mytuner-container {
+        width: 100%;
+        background: #0a0a0a;
+        border-radius: 24px;
+        overflow: hidden;
+        border: 1px solid #1a1a1a;
+        box-shadow: 0 20px 40px rgba(0,0,0,0.5);
     }
 </style>
 
-<div class="animate__animated animate__fadeIn">
+<div class="animate__animated animate__fadeIn px-4">
     
     <div class="full-rainbow-line mb-6"></div>
 
-    <!-- Navegação Superior -->
-    <div class="flex justify-between items-center mb-8 px-4">
-        <div class="text-[9px] text-zinc-600 font-bold tracking-[0.2em]">GAY FM BRASIL</div>
+    <!-- Voltar -->
+    <div class="flex justify-end mb-6">
         <span onclick="carregarPagina('home.html')" class="text-[10px] tracking-widest font-black text-gray-500 hover:text-white uppercase cursor-pointer transition-all">
             ← VOLTAR
         </span>
     </div>
 
-    <!-- Cabeçalho -->
+    <!-- Título -->
     <header class="text-center mb-10">
-        <h1 class="text-5xl rainbow-text italic tracking-tighter mb-2 font-black">HISTÓRICO</h1>
-        <p class="text-gray-500 uppercase text-[10px] tracking-[0.3em]">As músicas que fazem o seu som</p>
+        <h1 class="text-5xl rainbow-text italic tracking-tighter mb-2 font-black uppercase">Playlist</h1>
+        <p class="text-gray-500 uppercase text-[10px] tracking-[0.3em]">Histórico de músicas - Gay FM</p>
     </header>
 
-    <!-- CARD: TOCANDO AGORA -->
-    <div class="bg-[#0a0a0a] border border-zinc-900 p-6 rounded-3xl mb-4 border-l-4 border-l-red-600 shadow-xl mx-4">
-        <p class="text-red-500 text-[10px] font-black tracking-widest mb-3 uppercase flex items-center gap-2">
-            <span class="relative flex h-2 w-2">
-              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
-              <span class="relative inline-flex rounded-full h-2 w-2 bg-red-500"></span>
-            </span>
-            NO AR AGORA
-        </p>
-        <div class="flex items-center gap-4 text-left">
-            <img id="current-art-page" src="favicon.png" class="w-16 h-16 rounded-xl shadow-lg border border-zinc-800 object-cover">
-            <div class="overflow-hidden">
-                <h2 id="current-title-page" class="text-xl font-bold leading-tight truncate text-white uppercase tracking-tighter">Sintonizando...</h2>
-                <p id="current-artist-page" class="text-gray-400 text-sm truncate uppercase">Gay FM Brasil</p>
+    <!-- BOTÃO DA LOJA (O que você pediu primeiro) -->
+    <a href="LINK_DA_SUA_LOJA_AQUI" target="_blank" class="shop-card flex items-center justify-between p-5 rounded-2xl mb-10 group">
+        <div class="flex items-center gap-4">
+            <div class="bg-red-600 p-2 rounded-lg shadow-[0_0_15px_rgba(228,3,3,0.4)]">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+            </div>
+            <div class="text-left">
+                <h3 class="text-white font-black text-sm uppercase italic">Loja Gay FM Brasil</h3>
+                <p class="text-zinc-500 text-[10px] uppercase tracking-widest">Produtos que celebram o orgulho</p>
             </div>
         </div>
-    </div>
+        <span class="text-red-600 font-bold group-hover:translate-x-2 transition-transform">VER LOJA →</span>
+    </a>
 
-    <!-- LINK PARA A LOJA (MELHORADO) -->
-    <div class="px-4 mb-8">
-        <a href="SUA_LOJA_URL_AQUI" target="_blank" class="shop-button flex items-center justify-between p-4 rounded-2xl group">
-            <div class="flex items-center gap-4">
-                <div class="bg-zinc-900 p-3 rounded-xl group-hover:scale-110 transition-transform">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#E40303" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
-                </div>
-                <div>
-                    <p class="text-white text-sm font-black uppercase italic tracking-tighter">LOJA EXCLUSIVA GAY FM</p>
-                    <p class="text-gray-500 text-[9px] uppercase tracking-widest">Vista as cores do nosso orgulho</p>
-                </div>
-            </div>
-            <div class="bg-white/5 h-8 w-8 rounded-full flex items-center justify-center group-hover:bg-red-600 transition-colors">
-                <span class="text-white text-xs">→</span>
-            </div>
-        </a>
-    </div>
-
-    <!-- LISTA DE HISTÓRICO (INSPIRADO NO MYTUNER) -->
-    <div class="bg-[#0a0a0a] border border-zinc-900 rounded-3xl overflow-hidden shadow-2xl mx-4 mb-10">
-        <div class="p-4 border-b border-zinc-900 flex justify-between items-center bg-[#0d0d0d]">
-            <p class="text-[10px] text-gray-500 font-black uppercase tracking-widest">Últimas do Estúdio</p>
-            <div class="h-1 w-8 bg-zinc-800 rounded-full"></div>
+    <!-- SEÇÃO HISTÓRICO (Copiando a funcionalidade do site MyTuner) -->
+    <div class="mytuner-container">
+        <div class="p-4 border-b border-zinc-900 bg-[#0d0d0d] flex items-center gap-3">
+            <img src="https://static2.mytuner.mobi/static/mytuner/images/home/playlist.png" width="20" alt="Playlist">
+            <span class="text-[10px] text-zinc-400 font-black uppercase tracking-[0.2em]">Músicas recentes</span>
         </div>
         
-        <!-- Lista Dinâmica -->
-        <div id="playlist-container" class="max-h-[500px] overflow-y-auto">
-            <!-- Os itens serão inseridos aqui pelo script -->
-            <div class="p-8 text-center text-zinc-700 text-xs uppercase tracking-widest">
-                Carregando playlist...
-            </div>
-        </div>
+        <!-- Widget que traz o histórico com fotos, exatamente como no site deles -->
+        <iframe 
+            src="https://mytuner-radio.com/widgets/playlist/519011?f=519011&p=1&s=1" 
+            frameborder="0" 
+            style="width: 100%; height: 600px; background: transparent;"
+            allowtransparency="true">
+        </iframe>
     </div>
+
+    <p class="text-center text-[9px] text-zinc-700 mt-8 uppercase tracking-[0.3em]">Gay FM Brasil - A Sua Rádio</p>
 </div>
-
-<script>
-    // Função para buscar o histórico real do seu AzuraCast
-    async function atualizarHistorico() {
-        try {
-            // Usando a API pública do seu AzuraCast para pegar o histórico real
-            const response = await fetch('https://gayfmbr.mooo.com/api/nowplaying/gay_fm_br');
-            const data = await response.json();
-            
-            // 1. Atualiza o "Tocando Agora" no topo da página
-            document.getElementById('current-title-page').innerText = data.now_playing.song.title;
-            document.getElementById('current-artist-page').innerText = data.now_playing.song.artist;
-            document.getElementById('current-art-page').src = data.now_playing.song.art;
-
-            // 2. Constrói a lista estilo "MyTuner"
-            const container = document.getElementById('playlist-container');
-            let html = '';
-
-            data.song_history.forEach(item => {
-                html += `
-                <div class="history-item animate__animated animate__fadeInUp">
-                    <img src="${item.song.art}" class="history-art" onerror="this.src='favicon.png'">
-                    <div class="overflow-hidden">
-                        <p class="text-white text-[11px] font-bold uppercase truncate tracking-tighter">${item.song.title}</p>
-                        <p class="text-zinc-500 text-[10px] uppercase truncate">${item.song.artist}</p>
-                    </div>
-                </div>
-                `;
-            });
-
-            container.innerHTML = html;
-
-        } catch (error) {
-            console.error("Erro ao carregar histórico:", error);
-            document.getElementById('playlist-container').innerHTML = `<p class="p-4 text-center text-zinc-600 text-[10px]">Não foi possível carregar a lista agora.</p>`;
-        }
-    }
-
-    // Inicializa
-    atualizarHistorico();
-    
-    // Atualiza a cada 30 segundos para não sobrecarregar
-    if(window.timerHistorico) clearInterval(window.timerHistorico);
-    window.timerHistorico = setInterval(atualizarHistorico, 30000);
-</script>
