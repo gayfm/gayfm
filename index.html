@@ -8,6 +8,16 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
 
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-0C2FTVHV4G"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-0C2FTVHV4G');
+    </script>
+
 <style>
     body { font-family: 'Inter', sans-serif; background-color: #0a0a0a; color: white; margin:0; padding-bottom: 90px; }
     
@@ -122,6 +132,13 @@
     function carregarPagina(pagina) {
         fetch(pagina).then(res => res.text()).then(html => {
             document.getElementById("conteudo").innerHTML = html;
+
+            // Envia evento de 'page_view' para o Google Analytics ao trocar de página
+            if (typeof gtag === 'function') {
+                gtag('event', 'page_view', {
+                    page_path: '/' + pagina
+                });
+            }
         }).catch(() => {
             document.getElementById("conteudo").innerHTML = "<p>Erro ao carregar.</p>";
         });
@@ -129,7 +146,6 @@
 
     // FUNÇÃO DO CONTADOR DE VISITAS
     function contarVisitas() {
-        // Altere 'gayfmbrasil_site' para um nome único se desejar resetar o contador
         const namespace = "gayfmbrasil_unique_hits"; 
         
         fetch(`https://api.countapi.xyz/hit/${namespace}/visits`)
